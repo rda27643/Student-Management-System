@@ -70,4 +70,14 @@ public class Student {
     public String getStudentNum() {
         return studentNum;
     }
+
+    @Override
+    public String toString() {
+        return
+                "\tname='" + name  + "\n" +
+                "\temail='" + email + "'\n" +
+                "\tmajor='" + major + "'\n" +
+                "\tage='" + age + "'\n" +
+                "\tstudentNum='" + studentNum + "'";
+    }
 }
