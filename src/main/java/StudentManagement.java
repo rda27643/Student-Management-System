@@ -42,6 +42,11 @@ public class StudentManagement {
         }
     }
 
-
+    public void deleteStudent(String studNumber){
+        if (students.remove(studNumber) == null){
+            System.out.println("not found");
+        } else
+            System.out.println("delete done");
+    }
 
 }
