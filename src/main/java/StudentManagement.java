@@ -18,8 +18,8 @@ public class StudentManagement {
     public void showAllStudents(){
         int counter = 0;
         for (Map.Entry<String, Student> i : students.entrySet()) {
-            System.out.println("S " +counter + ":");
-            System.out.println("\t" + i.getValue());
+            System.out.println("S " + counter + ":");
+            System.out.println(i.getValue());
         }
     }
 }
