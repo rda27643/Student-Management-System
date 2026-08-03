@@ -1,23 +1,25 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentManagement {
-    private ArrayList<Student> students;
+    private final HashMap<String,Student> students;
 
     public StudentManagement() {
-        this.students = new ArrayList<>();
+        this.students = new HashMap<>();
     }
     public void addStudent(Student student){
-        students.add(student);
+        if (students.putIfAbsent(student.getStudentNum(),student) == null){
+            System.out.println("add successfully");
+        } else {
+            System.out.println("wrong input");
+        }
+
     }
     public void showAllStudents(){
-        int count = 0;
-        if (students.isEmpty()){
-            System.out.println("no student for show!");
-        } else {
-            for (Student s : students) {
-                System.out.println("S" + count++);
-                System.out.println("\t" + s);
-            }
+        int counter = 0;
+        for (Map.Entry<String, Student> i : students.entrySet()) {
+            System.out.println("S " +counter + ":");
+            System.out.println("\t" + i.getValue());
         }
     }
 }

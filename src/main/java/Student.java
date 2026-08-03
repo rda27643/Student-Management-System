@@ -5,17 +5,24 @@ public class Student {
     private String email;
     private Major major;
     private String age;
-    private final String id;
-    private static int counter = 0;
+    private String studentNum;
 
-    public Student(String name, String email, Major major, String age) {
-        this.id = "405" + counter++;
+    public Student(String name, String studentNum, String email, Major major, String age) {
         setName(name);
+        setStudentNum(studentNum);
         setEmail(email);
         setMajor(major);
         setAge(age);
     }
 
+
+    public void setStudentNum(String studentNum) {
+        if (Pattern.matches("[0-9]{3,}",studentNum)){
+            this.studentNum = studentNum;
+        } else {
+            throw new IllegalArgumentException("invalid student number");
+        }
+    }
     public void setName(String name) {
         if (Pattern.matches("[a-zA-Z]{3,}",name)){
             this.name = name;
@@ -60,8 +67,7 @@ public class Student {
     public String getAge() {
         return age;
     }
-
-    public String getId() {
-        return id;
+    public String getStudentNum() {
+        return studentNum;
     }
 }
