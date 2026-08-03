@@ -23,9 +23,10 @@ public enum Major {
     public String getLabel() {
         return label;
     }
-    public static Major findMajor(int majorId){
-        for (Major m : values()){
-            if (m.majorId == majorId){
+
+    public static Major findMajor(int majorId) {
+        for (Major m : values()) {
+            if (m.majorId == majorId) {
                 return m;
             }
         }
