@@ -16,4 +16,19 @@ public enum Major {
         this.label = label;
     }
 
+    public int getMajorId() {
+        return majorId;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+    public static Major findMajor(int majorId){
+        for (Major m : values()){
+            if (m.majorId == majorId){
+                return m;
+            }
+        }
+        return null;
+    }
 }
