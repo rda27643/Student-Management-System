@@ -30,14 +30,13 @@ public class StudentManagement {
         }
     }
 
-    public void editStudent(String nameNew, String studentNum, String emailNew, Major majorNew, String ageNew){
+    public void editStudent(String nameNew, String studentNum, String emailNew, String ageNew){
         Student s = students.get(studentNum);
         if (s == null){
             System.out.println("not found");
         }else {
             s.setName(nameNew);
             s.setEmail(emailNew);
-            s.setMajor(majorNew);
             s.setAge(ageNew);
         }
     }
