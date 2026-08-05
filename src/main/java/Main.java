@@ -58,7 +58,7 @@ public class Main {
                 }
                 case 3 -> {
                     System.out.println("-------------");
-                    System.out.print("Enter the id ");
+                    System.out.print("Enter the id: ");
                     studNumber = sc.nextLine();
                     System.out.println("Student:\n" + studentManagement.searchStudent(studNumber));
                 }
@@ -91,7 +91,12 @@ public class Main {
                     System.out.println("Exit program....");
                     break end;
                 }
+                default -> {
+                    System.out.println("invalid choice try again!");
+                    continue;
+                }
             }
+
             System.out.println("-------------\n");
 
         }
