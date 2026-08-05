@@ -14,7 +14,7 @@ public class Main {
             try {
                 choice = sc.nextInt();
                 sc.nextLine();
-            } catch (Exception _) {
+            } catch (Exception e) {
                 System.out.println("invalid choice please enter number\n");
                 continue;
             }
@@ -61,6 +61,31 @@ public class Main {
                     studNumber = sc.nextLine();
                     System.out.println("Student:\n" + studentManagement.searchStudent(studNumber));
                 }
+                case 4 -> {
+                    System.out.println("-------------");
+                    System.out.print("Enter Student Number you want edit: ");
+                    studNumber = sc.nextLine();
+                    System.out.println("Enter new info:");
+                    System.out.print("Name: ");
+                    name = sc.nextLine();
+                    System.out.print("email: ");
+                    email = sc.nextLine();
+                    System.out.print("age: ");
+                    age = sc.nextLine();
+                    try {
+                        studentManagement.editStudent(name, studNumber, email, age);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+                case 5 -> {
+                    System.out.println("-------------");
+                    System.out.print("Enter student number for delete: ");
+                    studNumber = sc.nextLine();
+                    studentManagement.deleteStudent(studNumber);
+
+                }
             }
             System.out.println("-------------");
 
@@ -73,7 +98,7 @@ public class Main {
         int counter = 1;
         System.out.println("====== Menu ======");
         for (String s : menu) {
-            System.out.println(counter + ". " + s);
+            System.out.println(counter++ + ". " + s);
         }
         System.out.println("============");
     }
