@@ -80,7 +80,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{\n\tName:  " + name + "\n\tStudent Number: " + studentNum + "\n\tEmail: "
+        return "{\n\tName:  " + name + "\n\tStudent Number: " + studentNum + "\n\tEmail: "
                 + email + "\n\tMajor: " + major + "\n\tAge: " + age + "\n}";
 
     }

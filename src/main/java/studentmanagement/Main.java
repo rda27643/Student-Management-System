@@ -66,7 +66,7 @@ public class Main {
                         student = new Student(name, studNumber, email, major, age);
                         flag = studentManagement.addStudent(student);
                         if (flag){
-                            System.out.println("Student added successfully");
+                            System.out.println("\nStudent added successfully\n");
                         } else {
                             System.out.println("Student already exists");
                         }
