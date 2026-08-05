@@ -1,3 +1,5 @@
+package studentmanagement.model;
+
 public enum Major {
     COMPUTER_SCIENCE(1, "Computer Science"),
     SOFTWARE_ENGINEERING(2, "Software Engineering"),

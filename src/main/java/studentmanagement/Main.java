@@ -1,13 +1,20 @@
+package studentmanagement;
+
+import studentmanagement.model.Major;
+import studentmanagement.model.Student;
+import studentmanagement.service.StudentManagement;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         StudentManagement studentManagement = new StudentManagement();
         Scanner sc = new Scanner(System.in);
-        int choice, majorId;
-        String name, studNumber, email, age;
-        Student s;
+        int choice, majorId,age;
+        String name, studNumber, email,temp;
+        Student student;
         Major major;
+        boolean flag;
         end:
         while (true) {
             displayMenu();
@@ -17,6 +24,7 @@ public class Main {
                 sc.nextLine();
             } catch (Exception e) {
                 System.out.println("invalid choice please enter number\n");
+                sc.nextLine();
                 continue;
             }
             switch (choice) {
@@ -27,25 +35,41 @@ public class Main {
                     System.out.print("Enter Student Number: ");
                     studNumber = sc.nextLine();
                     System.out.print("Enter age: ");
-                    age = sc.nextLine();
+                    try {
+                        age = sc.nextInt();
+                    } catch (Exception e){
+                        System.out.println("Invalid age format");
+                        sc.nextLine();
+                        continue;
+                    }
+                    sc.nextLine();
                     System.out.print("Enter email ( example@email.com ) : ");
                     email = sc.nextLine();
                     System.out.println("major list : ");
-                    int counter = 1;
                     for (Major m : Major.values()) {
-                        System.out.println(counter++ + "- " + m);
+                        System.out.println(m.getMajorId() + "- " + m.getLabel());
                     }
                     System.out.print("Enter number of major: ");
-                    majorId = sc.nextInt();
-                    sc.nextLine();
+                    temp = sc.nextLine();
+                    if (temp.matches("[12345678]")){
+                        majorId = Integer.parseInt(temp);
+                    } else {
+                        System.out.println("\nInvalid choice try again\n");
+                        continue;
+                    }
                     major = Major.findMajor(majorId);
                     if (major == null) {
                         System.out.println("Not found major id");
                         continue;
                     }
                     try {
-                        s = new Student(name, studNumber, email, major, age);
-                        studentManagement.addStudent(s);
+                        student = new Student(name, studNumber, email, major, age);
+                        flag = studentManagement.addStudent(student);
+                        if (flag){
+                            System.out.println("Student added successfully");
+                        } else {
+                            System.out.println("Student already exists");
+                        }
 
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
@@ -60,7 +84,12 @@ public class Main {
                     System.out.println("-------------");
                     System.out.print("Enter the id: ");
                     studNumber = sc.nextLine();
-                    System.out.println("Student:\n" + studentManagement.searchStudent(studNumber));
+                    student = studentManagement.searchStudent(studNumber);
+                    if (student == null){
+                        System.out.println("Not found student");
+                        continue;
+                    }
+                    System.out.println("Student:\n" + student);
                 }
                 case 4 -> {
                     System.out.println("-------------");
@@ -72,9 +101,19 @@ public class Main {
                     System.out.print("email: ");
                     email = sc.nextLine();
                     System.out.print("age: ");
-                    age = sc.nextLine();
                     try {
-                        studentManagement.editStudent(name, studNumber, email, age);
+                        age = sc.nextInt();
+                    } catch (Exception e){
+                        System.out.println("Invalid age format");
+                        sc.nextLine();
+                        continue;
+                    }
+                    sc.nextLine();
+                    try {
+                        flag = studentManagement.editStudent(name, studNumber, email, age);
+                        if (!flag){
+                            System.out.println("Student not found");
+                        }
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
@@ -84,7 +123,11 @@ public class Main {
                     System.out.println("-------------");
                     System.out.print("Enter student number for delete: ");
                     studNumber = sc.nextLine();
-                    studentManagement.deleteStudent(studNumber);
+                    flag = studentManagement.deleteStudent(studNumber);
+                    if (flag){
+                        System.out.println("Delete done");
+                    }else
+                        System.out.println("Student not found");
 
                 }
                 case 6 -> {
@@ -106,10 +149,12 @@ public class Main {
     public static void displayMenu() {
         String[] menu = {"Add Student", "Show all Students", "Search Student", "Edit Student", "Delete Student", "Exit"};
         int counter = 1;
-        System.out.println("====== Menu ======");
+        System.out.println("====================");
+        System.out.println("  Student Management");
+        System.out.println("====================");
         for (String s : menu) {
             System.out.println(counter++ + ". " + s);
         }
-        System.out.println("============");
+        System.out.println("====================");
     }
 }
