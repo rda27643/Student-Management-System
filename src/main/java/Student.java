@@ -20,7 +20,7 @@ public class Student {
         if (Pattern.matches("[0-9]{3,}",studentNum)){
             this.studentNum = studentNum;
         } else {
-            throw new IllegalArgumentException("invalid student number");
+            throw new IllegalArgumentException("invalid student number or less than 3 character");
         }
     }
     public void setName(String name) {
@@ -74,7 +74,7 @@ public class Student {
     @Override
     public String toString() {
         return
-                "\tname='" + name  + "\n" +
+                "\tname='" + name  + "'\n" +
                 "\temail='" + email + "'\n" +
                 "\tmajor='" + major + "'\n" +
                 "\tage='" + age + "'\n" +
