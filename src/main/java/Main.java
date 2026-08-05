@@ -8,6 +8,7 @@ public class Main {
         String name, studNumber, email, age;
         Student s;
         Major major;
+        end:
         while (true) {
             displayMenu();
             System.out.print("Choice: ");
@@ -20,14 +21,14 @@ public class Main {
             }
             switch (choice) {
                 case 1 -> {
-                    System.out.println("-------------");
-                    System.out.println("Enter Name: ");
+                    System.out.println("\n-------------");
+                    System.out.print("Enter Name: ");
                     name = sc.nextLine();
                     System.out.print("Enter Student Number: ");
                     studNumber = sc.nextLine();
                     System.out.print("Enter age: ");
                     age = sc.nextLine();
-                    System.out.print("Enter email ( example@email.com )");
+                    System.out.print("Enter email ( example@email.com ) : ");
                     email = sc.nextLine();
                     System.out.println("major list : ");
                     int counter = 1;
@@ -86,15 +87,19 @@ public class Main {
                     studentManagement.deleteStudent(studNumber);
 
                 }
+                case 6 -> {
+                    System.out.println("Exit program....");
+                    break end;
+                }
             }
-            System.out.println("-------------");
+            System.out.println("-------------\n");
 
         }
 
     }
 
     public static void displayMenu() {
-        String[] menu = {"Add Student", "Show Student", "Search Student", "Edit Student", "Delete Student", "Exit"};
+        String[] menu = {"Add Student", "Show all Students", "Search Student", "Edit Student", "Delete Student", "Exit"};
         int counter = 1;
         System.out.println("====== Menu ======");
         for (String s : menu) {
