@@ -91,7 +91,12 @@ public class Main {
                     System.out.println("Exit program....");
                     break end;
                 }
+                default -> {
+                    System.out.println("invalid choice try again!");
+                    continue;
+                }
             }
+
             System.out.println("-------------\n");
 
         }
